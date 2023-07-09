@@ -1,4 +1,5 @@
 ﻿using BulkyBookWeb.Models;
+using BulkyBookWeb.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,15 +7,16 @@ namespace BulkyBookWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IEmailSenderService _service;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IEmailSenderService service)
         {
-            _logger = logger;
+            _service = service;
         }
 
         public IActionResult Index()
         {
+            _service.SendEmail("");
             return View();
         }
 
